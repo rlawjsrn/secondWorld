@@ -28,11 +28,11 @@ function getRow(row) { // 데이터 한건 처리.
 	tr = document.createElement('tr');
 	tr.onclick = function(e) {
 		console.log(this,e);
-		document.getElementById('empId').value = this.childNodes[0].innerHTML; //id값
-		document.getElementById('name').value = this.childNodes[1].innerHTML;
-		document.getElementById('email').value = this.childNodes[2].innerHTML;
-		document.getElementById('hire').value = this.childNodes[3].innerHTML;
-		document.getElementById('job').value = this.childNodes[4].innerHTML;
+		document.getElementById('empId').value = this.childNodes[0].innerHTML; //id
+		document.getElementById('name').value = this.childNodes[1].innerHTML; //name
+		document.getElementById('email').value = this.childNodes[2].innerHTML;//email
+		document.getElementById('hire').value = this.childNodes[3].innerHTML;//hire
+		document.getElementById('job').value = this.childNodes[4].innerHTML;//job
 				
 	}
 	for (let field in row) {

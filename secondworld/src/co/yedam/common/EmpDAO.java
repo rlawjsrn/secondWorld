@@ -6,6 +6,28 @@ import java.util.List;
 
 public class EmpDAO extends DAO {
 	
+	   public boolean checkId(String id) {
+		      
+		      connect();
+		      String sql = "SELECT * FROM empl_demo where employee_id = ?";
+		      try {
+		         psmt = conn.prepareStatement(sql);
+		         psmt.setString(1, id);
+		         rs = psmt.executeQuery();
+		         
+		         if ( rs.next()) {
+		            return false;
+		         } else {
+		            return true;
+		         }
+		         
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      } finally {
+		         disconnect();
+		      }
+		      return false;
+		   }
 	    //메소드의 반환값 타입 - 메소드 이름()
    public List<Employee> getEmpList() { //db에서 가져온 데이터를 list화 시키기
       connect();
@@ -22,7 +44,7 @@ public class EmpDAO extends DAO {
             emp.setEmployeeId(rs.getInt("employee_id"));
             emp.setLastName(rs.getString("last_name"));
             emp.setEmail(rs.getString("email"));
-            emp.setHireDate(rs.getString("hire_date"));
+            emp.setHireDate(rs.getString("hire_date").substring(0,10));
             emp.setJobId(rs.getString("job_id"));
 
             list.add(emp);
@@ -106,6 +128,6 @@ public class EmpDAO extends DAO {
 		}
 		return -1;
 	}
-
+   
 
 }
